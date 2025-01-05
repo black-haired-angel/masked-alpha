@@ -13,6 +13,7 @@ class Script(scripts.Script):
 
 # The title of the script. This is what will be displayed in the dropdown menu.
     def title(self):
+        print("title関数が実行されました")
         return "Extension Template"
     
     # Decide to show menu in txt2img or img2img
@@ -21,6 +22,7 @@ class Script(scripts.Script):
     #
     # below code always show extension menu
     def show(self, is_img2img):
+        print("show関数が実行されました")
         return scripts.AlwaysVisible
     
     # Setup menu ui detail
@@ -39,6 +41,7 @@ class Script(scripts.Script):
                                     label="Checkbox"
                             )
             # TODO: add more UI components (cf. https://gradio.app/docs/#components)
+            print("ui関数が実行されました")
             return [angle, checkbox]
     
     # Extension main process
@@ -60,7 +63,7 @@ class Script(scripts.Script):
     def run(self, p, angle, checkbox):
         # TODO: get UI info through UI object angle, checkbox
         proc = process_images(p)
-        
+        print("ui関数が実行されました")
         # 真っ青な画像を作成してprocに渡す
         blue_image = Image.new('RGB', (512, 512), (0, 0, 255))  # 512x512ピクセルの真っ青な画像
         proc.images = [blue_image for _ in proc.images]  # すべての画像を真っ青な画像に置き換える
