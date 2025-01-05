@@ -62,8 +62,15 @@ class Script(scripts.Script):
         
     def run(self, p, angle, checkbox):
         # TODO: get UI info through UI object angle, checkbox
+        print("ui関数が実行されました1")
+        from modules import images, script_callbacks
+        from modules.processing import process_images, Processed
+        from modules.processing import Processed
+        from modules.shared import opts, cmd_opts, state
+        from PIL import Image
+        print("ui関数が実行されました2")
         proc = process_images(p)
-        print("ui関数が実行されました")
+        print("ui関数が実行されました3")
         # 真っ青な画像を作成してprocに渡す
         blue_image = Image.new('RGB', (512, 512), (0, 0, 255))  # 512x512ピクセルの真っ青な画像
         proc.images = [blue_image for _ in proc.images]  # すべての画像を真っ青な画像に置き換える
