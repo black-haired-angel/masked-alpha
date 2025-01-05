@@ -11,9 +11,8 @@ from modules.shared import opts, cmd_opts, state
 class Script(scripts.Script):  
 
 # The title of the script. This is what will be displayed in the dropdown menu.
-    def title(self):
-
-        return "Flip/Rotate Output"
+    def title(self):
+        return "Flip/Rotate Output"
 
 
 # Determines when the script should be shown in the dropdown menu via the 
@@ -22,8 +21,7 @@ class Script(scripts.Script):
 # Thus, return is_img2img to only show the script on the img2img tab.
 
     def show(self, is_img2img):
-
-        return is_img2img
+        return is_img2img
 
 # How the script's is displayed in the UI. See https://gradio.app/docs/#components
 # for the different UI components you can use and how to create them.
