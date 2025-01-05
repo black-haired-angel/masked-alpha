@@ -1,12 +1,13 @@
 import modules.scripts as scripts
 import gradio as gr
 import os
+import numpy as np
 
 from modules import images, script_callbacks
 from modules.processing import process_images, Processed
 from modules.processing import Processed
 from modules.shared import opts, cmd_opts, state
-
+from PIL import Image
 
 class Script(scripts.Script):  
 
