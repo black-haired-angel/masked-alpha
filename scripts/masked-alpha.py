@@ -62,8 +62,8 @@ class Script(scripts.Script):
 
 
         for i, img in enumerate(p.images):
-            img.save(f"{p.outpath_samples}/imageA_{i}.png")
-        
+            #img.save(f"{p.outpath_samples}/imageA_{i}.png")
+            img.save(f"/content/stable-diffusion-webui/outputs/imageA_{i}.png")
         #proc = process_images(p)
 
         # rotate and flip each image in the processed images
