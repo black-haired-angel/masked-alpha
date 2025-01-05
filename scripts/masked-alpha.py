@@ -3,6 +3,8 @@ from modules import scripts, script_callbacks
 from modules import images
 from modules.processing import process_images, Processed
 from modules.processing import Processed
+from PIL import ImageEnhance
+
 
 class Script(scripts.Script): 
     def title(self):
@@ -44,6 +46,10 @@ class Script(scripts.Script):
             alpha = ImageEnhance.Brightness(alpha).enhance(alpha_value)
             img.putalpha(alpha)
 
+
+        for i, img in enumerate(p.images):
+            img.save(f"{p.outpath_samples}/imageA_{i}.png")
+        
         #proc = process_images(p)
 
         # rotate and flip each image in the processed images
