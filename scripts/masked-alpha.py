@@ -90,7 +90,7 @@ class Script(scripts.Script):
 
         return p
 
-    def run(self, p, angle, hflip, vflip, overwrite):
+    def run(self, p, is_active, mask_prompt, angle, hflip, vflip, overwrite):
 
         # function which takes an image from the Processed object, 
         # and the angle and two booleans indicating horizontal and
