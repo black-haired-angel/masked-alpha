@@ -27,7 +27,7 @@ class Script(scripts.Script):
             mask_prompt,
         ]
         
-    def run(self, p, is_active, mask_prompt):
+    def testrun(self, p, is_active, mask_prompt):
         if not is_active:
             return p
 
@@ -63,6 +63,20 @@ class Script(scripts.Script):
             #proc.seed + i, proc.prompt, opts.samples_format, info= proc.info, p=p)
         #return proc
         return p
+
+    def run(self, p, is_active, mask_prompt):
+    
+    # 生成された画像の左半分を白くする
+    for img in p.images:
+        img = img.convert("RGBA")
+        width, height = img.size
+        for x in range(width // 2):
+            for y in range(height):
+                img.putpixel((x, y), (255, 255, 255, 255))
+
+    return p
+
+
 
 # コールバック関数を定義
 def on_ui_settings_callback():
