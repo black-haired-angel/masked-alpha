@@ -38,22 +38,46 @@ def process_image(prompt, mask_prompt):
 
 class MaskedAlphaScript(scripts.Script):
     def title(self):
-        return "Masked Alpha Extension"
+        return "Masked Alpha"
 
     def show(self, is_img2img):
         return scripts.AlwaysVisible
 
     def ui(self, is_img2img):
         with gr.Accordion("Masked Alpha Extension", open=False):
-            mask_prompt = gr.Textbox(label="マスクプロンプト")
+            is_active = gr.Checkbox(
+                label="Active",
+                value=False,
+            )
+            mask_prompt = gr.Textbox(
+                label="mask prompt"
+            )
         return [
-            mask_prompt
+            is_active,
+            mask_prompt,
         ]
 
     
 
     def run(self, p, mask_prompt):
-        # ここにマスクプロンプトを使用した処理を追加
+        if not mask_prompt:
+            return p
+
+        try:
+            alpha_value = float(mask_prompt)
+            if alpha_value < 0.0 or alpha_value > 1.0:
+                raise ValueError("透明度は0.0から1.0の間で指定してください。")
+        except ValueError as e:
+            print(f"エラー: {e}")
+            return p
+
+        # 生成された画像の透明度を変更
+        for img in p.images:
+            img = img.convert("RGBA")
+            alpha = img.split()[3]
+            alpha = ImageEnhance.Brightness(alpha).enhance(alpha_value)
+            img.putalpha(alpha)
+
         return p
 
 # コールバック関数を定義
