@@ -44,15 +44,25 @@ class Script(scripts.Script):
     # Extension main process
     # Type: (StableDiffusionProcessing, List<UI>) -> (Processed)
     # args is [StableDiffusionProcessing, UI1, UI2, ...]
+    # def run(self, p, angle, checkbox):
+        # TODO: get UI info through UI object angle, checkbox
+        # proc = process_images(p)
+        
+        # 画像の左半分を白くする処理を追加
+        # for i, img in enumerate(proc.images):
+            # img_array = np.array(img)
+            # height, width, _ = img_array.shape
+            # img_array[:, :width // 2] = [255, 255, 255]  # 左半分を白くする
+            # proc.images[i] = Image.fromarray(img_array)
+        
+        # return proc
+        
     def run(self, p, angle, checkbox):
         # TODO: get UI info through UI object angle, checkbox
         proc = process_images(p)
         
-        # 画像の左半分を白くする処理を追加
-        for i, img in enumerate(proc.images):
-            img_array = np.array(img)
-            height, width, _ = img_array.shape
-            img_array[:, :width // 2] = [255, 255, 255]  # 左半分を白くする
-            proc.images[i] = Image.fromarray(img_array)
+        # 真っ青な画像を作成してprocに渡す
+        blue_image = Image.new('RGB', (512, 512), (0, 0, 255))  # 512x512ピクセルの真っ青な画像
+        proc.images = [blue_image for _ in proc.images]  # すべての画像を真っ青な画像に置き換える
         
         return proc
