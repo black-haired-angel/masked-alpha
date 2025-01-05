@@ -42,4 +42,4 @@ with gr.Blocks() as demo:
     generate_button = gr.Button("画像生成")
     generate_button.click(process_image, inputs=[prompt, mask_prompt], outputs=output_image)
 
-demo.launch()
+demo.launch(share=True)
