@@ -46,7 +46,9 @@ class MaskedAlphaScript(scripts.Script):
     def ui(self, is_img2img):
         with gr.Accordion("Masked Alpha Extension", open=False):
             mask_prompt = gr.Textbox(label="マスクプロンプト")
-        return mask_prompt
+        return [
+            mask_prompt
+        ]
 
     
 
