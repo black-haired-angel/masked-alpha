@@ -67,14 +67,14 @@ class Script(scripts.Script):
     def run(self, p, is_active, mask_prompt):
     
     # 生成された画像の左半分を白くする
-    for img in p.images:
-        img = img.convert("RGBA")
-        width, height = img.size
-        for x in range(width // 2):
-            for y in range(height):
-                img.putpixel((x, y), (255, 255, 255, 255))
+        for img in p.images:
+            img = img.convert("RGBA")
+            width, height = img.size
+            for x in range(width // 2):
+                for y in range(height):
+                    img.putpixel((x, y), (255, 255, 255, 255))
 
-    return p
+        return p
 
 
 
