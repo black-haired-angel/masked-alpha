@@ -18,7 +18,7 @@ def detect_and_transparent_apple(image, mask_prompt):
     # 例: detections = detect_apples(image_bgr)
 
     # 仮の検出結果（りんごの位置を矩形で指定）
-    detections = [(100, 100, 200, 200)]  # (x1, y1, x2, y2)
+    detections = [(1, 1, 200, 200)]  # (x1, y1, x2, y2)
 
     # アルファチャンネルを編集してりんごの部分を透過
     for (x1, y1, x2, y2) in detections:
