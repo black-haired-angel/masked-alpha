@@ -44,7 +44,14 @@ class Script(scripts.Script):
     # Type: (StableDiffusionProcessing, List<UI>) -> (Processed)
     # args is [StableDiffusionProcessing, UI1, UI2, ...]
     def run(self, p, angle, checkbox):
-            # TODO: get UI info through UI object angle, checkbox
-            proc = process_images(p)
-            # TODO: add image edit process via Processed object proc
-            return proc
+        # TODO: get UI info through UI object angle, checkbox
+        proc = process_images(p)
+        
+        # 画像の左半分を白くする処理を追加
+        for i, img in enumerate(proc.images):
+            img_array = np.array(img)
+            height, width, _ = img_array.shape
+            img_array[:, :width // 2] = [255, 255, 255]  # 左半分を白くする
+            proc.images[i] = Image.fromarray(img_array)
+        
+        return proc
