@@ -142,11 +142,11 @@ class Script(scripts.Script):
         return proc
 
 # コールバック関数を定義
-def on_ui_settings_callback():
+#def on_ui_settings_callback():
     # 必要な設定をここに追加
-    pass
+    #pass
 
-script_callbacks.on_ui_settings(on_ui_settings_callback)
+#script_callbacks.on_ui_settings(on_ui_settings_callback)
 
 # スクリプトを登録
 # def on_ui_tabs():
