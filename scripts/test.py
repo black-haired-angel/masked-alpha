@@ -47,51 +47,43 @@ class Script(scripts.Script):
 
     def run(self, p, angle, hflip, vflip, overwrite):
 
-        # function which takes an image from the Processed object, 
+        # function which takes an image from the Processed object, 
         # and the angle and two booleans indicating horizontal and
-        # vertical flips from the UI, then returns the 
-        # image rotated and flipped accordingly
+        # vertical flips from the UI, then returns the 
+        # image rotated and flipped accordingly
         def rotate_and_flip(im, angle, hflip, vflip):
-            from PIL import Image
-            
-            raf = im
-            
-            if angle != 0:
-                raf = raf.rotate(angle, expand=True)
-            if hflip:
-                raf = raf.transpose(Image.FLIP_LEFT_RIGHT)
-            if vflip:
-                raf = raf.transpose(Image.FLIP_TOP_BOTTOM)
-            return raf
+            from PIL import Image
+            raf = im
+            if angle != 0:
+                raf = raf.rotate(angle, expand=True)
+            if hflip:
+                raf = raf.transpose(Image.FLIP_LEFT_RIGHT)
+            if vflip:
+                raf = raf.transpose(Image.FLIP_TOP_BOTTOM)
+            return raf
 
-  
-
-        # If overwrite is false, append the rotation information to the filename
-        # using the "basename" parameter and save it in the same directory.
-        # If overwrite is true, stop the model from saving its outputs and
-        # save the rotated and flipped images instead.
-        basename = ""
-        if(not overwrite):
-            if angle != 0:
-                basename += "rotated_" + str(angle)
-            if hflip:
-                basename += "_hflip"
-            if vflip:
-                basename += "_vflip"
-        else:
-            p.do_not_save_samples = True
-
-
-        proc = process_images(p)
-
-        # rotate and flip each image in the processed images
+        # If overwrite is false, append the rotation information to the filename
+        # using the "basename" parameter and save it in the same directory.
+        # If overwrite is true, stop the model from saving its outputs and
+        # save the rotated and flipped images instead.
+        basename = ""
+        if(not overwrite):
+            if angle != 0:
+                basename += "rotated_" + str(angle)
+            if hflip:
+                basename += "_hflip"
+            if vflip:
+                basename += "_vflip"
+        else:
+            p.do_not_save_samples = True
+            
+        proc = process_images(p)
+        # rotate and flip each image in the processed images
         # use the save_images method from images.py to save
         # them.
-        for i in range(len(proc.images)):
-
-            proc.images[i] = rotate_and_flip(proc.images[i], angle, hflip, vflip)
-
-            images.save_image(proc.images[i], p.outpath_samples, basename,
-            proc.seed + i, proc.prompt, opts.samples_format, info= proc.info, p=p)
-
-        return proc
+        for i in range(len(proc.images)):
+            proc.images[i] = rotate_and_flip(proc.images[i], angle, hflip, vflip)
+            images.save_image(proc.images[i], p.outpath_samples, basename,
+            proc.seed + i, proc.prompt, opts.samples_format, info= proc.info, p=p)
+        return proc
+        
