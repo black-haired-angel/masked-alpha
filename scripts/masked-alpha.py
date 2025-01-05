@@ -50,4 +50,5 @@ class MaskedAlphaScript(scripts.Script):
         return p
 
 # スクリプトを登録
-script_callbacks.on_ui_tabs(MaskedAlphaScript().ui)
+# script_callbacks.on_ui_tabs(MaskedAlphaScript().ui)
+script_callbacks.on_ui_tabs(lambda: MaskedAlphaScript().ui(is_img2img=False))
