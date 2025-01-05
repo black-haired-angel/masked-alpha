@@ -1,5 +1,6 @@
 import gradio as gr
 from PIL import Image, ImageDraw, ImageFont
+from modules import scripts, script_callbacks
 import numpy as np
 import cv2
 
@@ -34,12 +35,19 @@ def process_image(prompt, mask_prompt):
         result_image = generated_image
     return result_image
 
-with gr.Blocks() as demo:
-    prompt = gr.Textbox(label="プロンプト")
-    mask_prompt = gr.Textbox(label="マスクプロンプト")
-    output_image = gr.Image(label="生成画像")
 
-    generate_button = gr.Button("画像生成")
-    generate_button.click(process_image, inputs=[prompt, mask_prompt], outputs=output_image)
+class MaskedAlphaScript(scripts.Script):
+    def title(self):
+        return "Masked Alpha Extension"
 
-demo.launch(share=True)
+    def ui(self, is_img2img):
+        with gr.Accordion("Masked Alpha Extension", open=False):
+            mask_prompt = gr.Textbox(label="マスクプロンプト")
+        return [mask_prompt]
+
+    def run(self, p, mask_prompt):
+        # ここにマスクプロンプトを使用した処理を追加
+        return p
+
+# スクリプトを登録
+script_callbacks.on_ui_tabs(MaskedAlphaScript().ui)
