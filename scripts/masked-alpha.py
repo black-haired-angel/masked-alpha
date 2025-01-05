@@ -41,54 +41,30 @@ class Script(scripts.Script):
             overwrite,
         ]
         
-    def testrun(self, p, is_active, mask_prompt):
-        if not is_active:
-            return p
+    #def testrun(self, p, is_active, mask_prompt):
+        #if not is_active:
+            #return p
 
-        try:
-            alpha_value = float(mask_prompt)
-            if alpha_value < 0.0 or alpha_value > 1.0:
-                raise ValueError("透明度は0.0から1.0の間で指定してください。")
-        except ValueError as e:
-            print(f"エラー: {e}")
-            return p
+        #try:
+            #alpha_value = float(mask_prompt)
+            #if alpha_value < 0.0 or alpha_value > 1.0:
+                #raise ValueError("透明度は0.0から1.0の間で指定してください。")
+        #except ValueError as e:
+            #print(f"エラー: {e}")
+            #return p
 
         # 生成された画像の透明度を変更
-        for img in p.images:
-            img = img.convert("RGBA")
-            alpha = img.split()[3]
-            alpha = ImageEnhance.Brightness(alpha).enhance(alpha_value)
-            img.putalpha(alpha)
+        #for img in p.images:
+            #img = img.convert("RGBA")
+            #alpha = img.split()[3]
+            #alpha = ImageEnhance.Brightness(alpha).enhance(alpha_value)
+            #img.putalpha(alpha)
 
 
-        for i, img in enumerate(p.images):
+        #for i, img in enumerate(p.images):
             #img.save(f"{p.outpath_samples}/imageA_{i}.png")
-            img.save(f"/content/stable-diffusion-webui/outputs/imageA_{i}.png")
-        #proc = process_images(p)
+        #return p
 
-        # rotate and flip each image in the processed images
-        # use the save_images method from images.py to save
-        # them.
-        #for i in range(len(proc.images)):
-
-            #proc.images[i] = rotate_and_flip(proc.images[i], angle, hflip, vflip)
-
-            #images.save_image(proc.images[i], p.outpath_samples, basename,
-            #proc.seed + i, proc.prompt, opts.samples_format, info= proc.info, p=p)
-        #return proc
-        return p
-
-    def test2run(self, p, is_active, mask_prompt):
-    
-    # 生成された画像の左半分を白くする
-        for img in p.images:
-            img = img.convert("RGBA")
-            width, height = img.size
-            for x in range(width // 2):
-                for y in range(height):
-                    img.putpixel((x, y), (255, 255, 255, 255))
-
-        return p
 
     def run(self, p, is_active, mask_prompt, angle, hflip, vflip, overwrite):
 
