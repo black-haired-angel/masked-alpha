@@ -40,16 +40,23 @@ class MaskedAlphaScript(scripts.Script):
     def title(self):
         return "Masked Alpha Extension"
 
+    def show(self, is_img2img):
+        return scripts.AlwaysVisible
+
     def ui(self, is_img2img):
         with gr.Accordion("Masked Alpha Extension", open=False):
             mask_prompt = gr.Textbox(label="マスクプロンプト")
         return mask_prompt
 
+    
+
     def run(self, p, mask_prompt):
         # ここにマスクプロンプトを使用した処理を追加
         return p
 
+script_callbacks.on_ui_settings()
+
 # スクリプトを登録
-def on_ui_tabs():
-    script = MaskedAlphaScript()
-    return [(script.ui(is_img2img=False), "Masked Alpha", "masked_alpha")]
+# def on_ui_tabs():
+    #script = MaskedAlphaScript()
+    #return [(script.ui(is_img2img=False), "Masked Alpha", "masked_alpha")]
