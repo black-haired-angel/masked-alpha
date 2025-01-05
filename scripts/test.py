@@ -29,12 +29,12 @@ class Script(scripts.Script):
 # The returned values are passed to the run method as parameters.
 
     def ui(self, is_img2img):
-        angle = gr.Slider(minimum=0.0, maximum=360.0, step=1, value=0,
-        label="Angle")
-        hflip = gr.Checkbox(False, label="Horizontal flip")
-        vflip = gr.Checkbox(False, label="Vertical flip")
-        overwrite = gr.Checkbox(False, label="Overwrite existing files")
-        return [angle, hflip, vflip, overwrite]
+        angle = gr.Slider(minimum=0.0, maximum=360.0, step=1, value=0,
+                          label="Angle")
+        hflip = gr.Checkbox(False, label="Horizontal flip")
+        vflip = gr.Checkbox(False, label="Vertical flip")
+        overwrite = gr.Checkbox(False, label="Overwrite existing files")
+        return [angle, hflip, vflip, overwrite]
 
   
 
