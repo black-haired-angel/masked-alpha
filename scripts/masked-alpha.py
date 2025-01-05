@@ -54,10 +54,10 @@ class MaskedAlphaScript(scripts.Script):
         # ここにマスクプロンプトを使用した処理を追加
         return p
 
-    # コールバック関数を定義
-    def on_ui_settings_callback():
-        # 必要な設定をここに追加
-        pass
+# コールバック関数を定義
+def on_ui_settings_callback():
+    # 必要な設定をここに追加
+    pass
 
 
 
