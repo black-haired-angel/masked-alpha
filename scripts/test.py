@@ -20,7 +20,7 @@ class Script(scripts.Script):
 # is_img2img is True if the current tab is img2img, and False if it is txt2img.
 # Thus, return is_img2img to only show the script on the img2img tab.
 
-    def show(self, is_img2img):
+    def show(self, is_img2img):
         return is_img2img
 
 # How the script's is displayed in the UI. See https://gradio.app/docs/#components
@@ -28,7 +28,7 @@ class Script(scripts.Script):
 # Most UI components can return a value, such as a boolean for a checkbox.
 # The returned values are passed to the run method as parameters.
 
-    def ui(self, is_img2img):
+    def ui(self, is_img2img):
         angle = gr.Slider(minimum=0.0, maximum=360.0, step=1, value=0,
         label="Angle")
         hflip = gr.Checkbox(False, label="Horizontal flip")
@@ -45,13 +45,13 @@ class Script(scripts.Script):
 # to be used in processing. The return value should be a Processed object, which is
 # what is returned by the process_images method.
 
-    def run(self, p, angle, hflip, vflip, overwrite):
+    def run(self, p, angle, hflip, vflip, overwrite):
 
         # function which takes an image from the Processed object, 
         # and the angle and two booleans indicating horizontal and
         # vertical flips from the UI, then returns the 
         # image rotated and flipped accordingly
-        def rotate_and_flip(im, angle, hflip, vflip):
+        def rotate_and_flip(im, angle, hflip, vflip):
             from PIL import Image
             
             raf = im
