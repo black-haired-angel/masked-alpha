@@ -54,7 +54,14 @@ class MaskedAlphaScript(scripts.Script):
         # ここにマスクプロンプトを使用した処理を追加
         return p
 
-script_callbacks.on_ui_settings()
+    # コールバック関数を定義
+    def on_ui_settings_callback():
+        # 必要な設定をここに追加
+        pass
+
+
+
+script_callbacks.on_ui_settings(on_ui_settings_callback)
 
 # スクリプトを登録
 # def on_ui_tabs():
